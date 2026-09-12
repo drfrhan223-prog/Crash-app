@@ -1,0 +1,74 @@
+let balance = 1000;
+let multiplier = 1.00;
+let crashPoint = 0;
+let gameRunning = false;
+let betAmount = 0;
+let timer = null;
+
+function placeBet() {
+    if (gameRunning) return;
+
+    betAmount = Number(document.getElementById("bet").value);
+
+    if (betAmount <= 0 || betAmount > balance) {
+        document.getElementById("message").innerText = "Invalid bet!";
+        return;
+    }
+
+    balance -= betAmount;
+    document.getElementById("balance").innerText = balance;
+
+    multiplier = 1.00;
+
+    // Demo random crash point
+    crashPoint = Math.random() * 4 + 2;
+
+    gameRunning = true;
+
+    document.getElementById("betBtn").disabled = true;
+    document.getElementById("cashBtn").disabled = false;
+    document.getElementById("message").innerText = "✈️ Flying...";
+
+    timer = setInterval(function () {
+        multiplier += 0.05;
+
+        document.getElementById("multiplier").innerText =
+            multiplier.toFixed(2) + "x";
+
+        if (multiplier >= crashPoint) {
+            crashGame();
+        }
+    }, 100);
+}
+
+function cashOut() {
+    if (!gameRunning) return;
+
+    clearInterval(timer);
+
+    let winnings = Math.floor(betAmount * multiplier);
+
+    balance += winnings;
+
+    document.getElementById("balance").innerText = balance;
+
+    document.getElementById("message").innerText =
+        "🎉 Cash Out! +" + winnings + " Coins";
+
+    gameRunning = false;
+
+    document.getElementById("betBtn").disabled = false;
+    document.getElementById("cashBtn").disabled = true;
+}
+
+function crashGame() {
+    clearInterval(timer);
+
+    gameRunning = false;
+
+    document.getElementById("message").innerText =
+        "💥 CRASHED at " + multiplier.toFixed(2) + "x";
+
+    document.getElementById("betBtn").disabled = false;
+    document.getElementById("cashBtn").disabled = true;
+}

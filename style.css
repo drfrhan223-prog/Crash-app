@@ -1,0 +1,78 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    text-align: center;
+}
+
+.game {
+    width: 95%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.multiplier {
+    font-size: 55px;
+    font-weight: bold;
+    margin: 30px 0;
+}
+
+.plane {
+    font-size: 70px;
+    margin: 25px 0;
+}
+
+.balance {
+    font-size: 20px;
+    margin: 25px 0;
+}
+
+input {
+    width: 120px;
+    padding: 12px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 13px 22px;
+    margin: 5px;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#betBtn {
+    background: green;
+    color: white;
+}
+
+#cashBtn {
+    background: orange;
+    color: black;
+}
+
+button:disabled {
+    opacity: 0.5;
+}
+
+#message {
+    font-size: 18px;
+    margin-top: 25px;
+}
